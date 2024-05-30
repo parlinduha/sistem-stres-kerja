@@ -9,7 +9,7 @@ class Diagnosis extends Model
 {
     use HasFactory;
 
-    protected $table = 'diagnosis';
+    protected $table = 'diagnoses';
 
     protected $guard = ["id"];
     protected $fillable = ["diagnosis_id", "data_diagnosis", "condition"];

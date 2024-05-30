@@ -2,6 +2,38 @@
 @section('content')
     <div class="content-wrapper">
         <div class="row">
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" id="formTitle">Create Data</h4>
+                        <form id="sicknessForm" class="forms-sample" method="POST">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="code_sickness" class="col-sm-3 col-form-label">Kode</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control form-control-sm" name="code_sickness"
+                                        id="code_sickness" placeholder="Kode Gejala">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="name_sickness" class="col-sm-3 col-form-label">Penyakit</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control form-control-sm" name="name_sickness"
+                                        id="name_sickness" placeholder="Penyakit">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="description" class="col-sm-3 col-form-label">Solusi</label>
+                                <div class="col-sm-9">
+                                    <textarea type="text" class="form-control form-control-sm" name="description" id="description" placeholder="Solusi"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary mr-2" id="submitButton">Submit</button>
+                            <button class="btn btn-sm btn-danger" id="cancelButton">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -41,38 +73,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 grid-margin stretch-card">
-                <div class="card">      
-                    <div class="card-body">
-                        <h4 class="card-title" id="formTitle">Create Data</h4>
-                        <form id="sicknessForm" class="forms-sample" method="POST">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="code_sickness" class="col-sm-3 col-form-label">Kode</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control form-control-sm" name="code_sickness"
-                                        id="code_sickness" placeholder="Kode Gejala">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="name_sickness" class="col-sm-3 col-form-label">Penyakit</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control form-control-sm" name="name_sickness"
-                                        id="name_sickness" placeholder="Penyakit">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="description" class="col-sm-3 col-form-label">Solusi</label>
-                                <div class="col-sm-9">
-                                    <textarea type="text" class="form-control form-control-sm" name="description" id="description" placeholder="Solusi"></textarea>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-sm btn-primary mr-2" id="submitButton">Submit</button>
-                            <button class="btn btn-sm btn-danger" id="cancelButton">Cancel</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 @endsection

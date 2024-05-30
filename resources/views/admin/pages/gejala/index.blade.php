@@ -2,6 +2,32 @@
 @section('content')
     <div class="content-wrapper">
         <div class="row">
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" id="formTitle">Create Data</h4>
+                        <form id="indicationForm" class="forms-sample" action="" method="POST">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="code_indication" class="col-sm-12 col-form-label">Kode</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control form-control-sm" name="code_indication"
+                                        id="code_indication" placeholder="Kode Gejala">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="name_indication" class="col-sm-12 col-form-label">Gejala</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control form-control-sm" name="name_indication"
+                                        id="name_indication" placeholder="Gejala">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary mr-2" id="submitButton">Submit</button>
+                            <button class="btn btn-sm btn-danger" id="cancelButton">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -36,32 +62,6 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title" id="formTitle">Create Data</h4>
-                        <form id="indicationForm" class="forms-sample" action="" method="POST">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="code_indication" class="col-sm-12 col-form-label">Kode</label>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control form-control-sm" name="code_indication"
-                                        id="code_indication" placeholder="Kode Gejala">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="name_indication" class="col-sm-12 col-form-label">Gejala</label>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control form-control-sm" name="name_indication"
-                                        id="name_indication" placeholder="Gejala">
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-sm btn-primary mr-2" id="submitButton">Submit</button>
-                            <button class="btn btn-sm btn-danger" id="cancelButton">Cancel</button>
-                        </form>
                     </div>
                 </div>
             </div>

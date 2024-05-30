@@ -15,4 +15,13 @@ class ValueCf extends Model
         'mb',
         'md'
     ];
+
+    public function sickness()
+    {
+        return $this->hasMany(Sickness::class, 'code_sickness', 'code_sickness');
+    }
+    public function indication()
+    {
+        return $this->hasMany(Indication::class, 'code_indication' /* tbl gejala */, 'code_indication');
+    }
 }

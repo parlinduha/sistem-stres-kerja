@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('backend/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/js/select.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/vendors/select2/select2.min.css') }}">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('backend/css/vertical-layout-light/style.css') }}">
@@ -59,6 +60,8 @@
     <script src="{{ asset('backend/vendors/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
     <script src="{{ asset('backend/js/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('backend/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
+    <script src="{{ asset('backend/vendors/select2/select2.min.js') }}"></script>
 
     <!-- End plugin js for this page -->
     <!-- inject:js -->
@@ -71,6 +74,10 @@
     <!-- Custom js for this page-->
     <script src="{{ asset('backend/js/dashboard.js') }}"></script>
     <script src="{{ asset('backend/js/Chart.roundedBarCharts.js') }}"></script>
+
+    <script src="{{ asset('backend/js/file-upload.js') }}"></script>
+    <script src="{{ asset('backend/js/typeahead.js') }}"></script>
+    <script src="{{ asset('backend/js/select2.js') }}"></script>
     {{--
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> --}}

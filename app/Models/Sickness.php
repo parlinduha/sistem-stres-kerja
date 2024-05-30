@@ -9,6 +9,8 @@ class Sickness extends Model
 {
     use HasFactory;
 
+    protected $table = 'sicknesses';
+    protected $guard = ["id"];
     protected $fillable = [
         'code_sickness',
         'name_sickness',

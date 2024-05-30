@@ -2,6 +2,47 @@
 @section('content')
     <div class="content-wrapper">
         <div class="row">
+             <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" id="formTitle">Create Data</h4>
+                        <form id="userForm" class="forms-sample" action="" method="POST">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-12 col-form-label">Nama</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control form-control-sm" name="name" id="name"
+                                        placeholder="Nama">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-12 col-form-label">Email</label>
+                                <div class="col-sm-12">
+                                    <input type="email" class="form-control form-control-sm" name="email" id="email"
+                                        placeholder="example@email.com">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="password" class="col-sm-12 col-form-label">Password</label>
+                                <div class="col-sm-12">
+                                    <input type="password" class="form-control form-control-sm" name="password"
+                                        id="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="password_confirmation" class="col-sm-12 col-form-label">Konfirmasi
+                                    Password</label>
+                                <div class="col-sm-12">
+                                    <input type="password" class="form-control form-control-sm" name="password_confirmation"
+                                        id="password_confirmation" placeholder="Konfirmasi Password">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary mr-2" id="submitButton">Submit</button>
+                            <button class="btn btn-sm btn-danger" id="cancelButton">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -43,46 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title" id="formTitle">Create Data</h4>
-                        <form id="indicationForm" class="forms-sample" action="" method="POST">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="name" class="col-sm-12 col-form-label">Nama</label>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control form-control-sm" name="name"
-                                        id="name" placeholder="Nama">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="email" class="col-sm-12 col-form-label">Email</label>
-                                <div class="col-sm-12">
-                                    <input type="email" class="form-control form-control-sm" name="email"
-                                        id="email" placeholder="example@email.com">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="password" class="col-sm-12 col-form-label">Password</label>
-                                <div class="col-sm-12">
-                                    <input type="password" class="form-control form-control-sm" name="password"
-                                        id="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="password_confirmation" class="col-sm-12 col-form-label">Konfirmasi Password</label>
-                                <div class="col-sm-12">
-                                    <input type="password" class="form-control form-control-sm" name="password_confirmation"
-                                        id="password_confirmation" placeholder="Konfirmasi Password">
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-sm btn-primary mr-2" id="submitButton">Submit</button>
-                            <button class="btn btn-sm btn-danger" id="cancelButton">Cancel</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+           
         </div>
     </div>
 @endsection
@@ -105,15 +107,16 @@
             $('.editButton').click(function() {
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/admin/indication/' + id,
+                    url: '/admin/user/' + id,
                     type: 'GET',
                     success: function(response) {
-                        $('#code_indication').val(response.code_indication);
-                        $('#name_indication').val(response.name_indication);
+                        $('#name').val(response.name);
+                        $('#email').val(response.email);
+                        $('#password').val(response.password);
                         $('#formTitle').text('Update Data');
                         $('#submitButton').text('Update');
                         // Simpan ID penyakit dalam atribut data pada formulir
-                        $('#indicationForm').attr('data-id', id);
+                        $('#userForm').attr('data-id', id);
                     },
                     error: function(xhr) {
                         console.log(xhr.responseText);
@@ -123,21 +126,21 @@
 
             $('#cancelButton').click(function(event) {
                 event.preventDefault();
-                $('#indicationForm').trigger('reset');
+                $('#userForm').trigger('reset');
                 $('#formTitle').text('Create Data');
                 $('#submitButton').text('Submit');
                 // Hapus atribut data-id saat membatalkan
-                $('#indicationForm').removeAttr('data-id');
+                $('#userForm').removeAttr('data-id');
             });
 
-            $('#indicationForm').submit(function(event) {
+            $('#userForm').submit(function(event) {
                 event.preventDefault();
                 var formData = $(this).serialize();
                 console.log(formData);
                 // Dapatkan ID penyakit dari atribut data pada formulir
                 var id = $(this).data('id');
-                var url = $('#formTitle').text() === 'Create Data' ? '/admin/indication/store' :
-                    '/admin/indication/update/' + id;
+                var url = $('#formTitle').text() === 'Create Data' ? '/admin/user/store' :
+                    '/admin/user/update/' + id;
                 $.ajax({
                     url: url,
                     type: 'POST',
@@ -160,7 +163,7 @@
                 // console.log(id);
                 if (confirm('Are you sure you want to delete this record?')) {
                     $.ajax({
-                        url: '/admin/indication/delete/' + id,
+                        url: '/admin/user/delete/' + id,
                         type: 'DELETE',
                         success: function(response) {
                             // Handle success response
