@@ -13,7 +13,8 @@
                                 <select class="js-example-basic-single w-100" id="code_indication" name="code_indication">
                                     <option value="AL">Pilih Kode Gejala</option>
                                     @foreach ($indication as $item)
-                                        <option value="{{ $item->code_indication }}">{{ $item->code_indication }}</option>
+                                        <option value="{{ $item->code_indication }}">{{ $item->code_indication }}
+                                            {{ $item->name_indication }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -22,7 +23,8 @@
                                 <select class="js-example-basic-single w-100" id="code_sickness" name="code_sickness">
                                     <option value="AL">Pilih Kode Penyakit</option>
                                     @foreach ($sickness as $item)
-                                        <option value="{{ $item->code_sickness }}">{{ $item->code_sickness }}</option>
+                                        <option value="{{ $item->code_sickness }}">{{ $item->code_sickness }}
+                                            {{ $item->name_sickness }}</option>
                                     @endforeach
                                 </select>
                             </div>

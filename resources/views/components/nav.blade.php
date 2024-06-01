@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
     <div class="container">
         <div class="navbar-brand-wrapper d-flex w-100">
-            <h5>Sys Pakar</h5>
+            <a href="/">
+                <img src="{{ asset('First Media.svg') }}" width="100" height="20" alt="" srcset="" />
+            </a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -41,7 +43,7 @@
                                 Wellcome, {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ url('/profile') }}">Dashboard</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a class="dropdown-item" href="#"

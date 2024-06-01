@@ -10,7 +10,7 @@ class RiwayatController extends Controller
 {
     public function index()
     {
-        $diagnosis = Diagnosis::orderBy('id', 'asc')->get();
+        $diagnosis = Diagnosis::with('user')->orderBy('id', 'asc')->whereJsonLength('data_diagnosis', '>', 0)->get();
         return view('admin.pages.riwayat.index', compact('diagnosis'));
     }
 

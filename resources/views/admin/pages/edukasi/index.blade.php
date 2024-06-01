@@ -58,9 +58,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Judul</th>
-                                        <th scope="col">Slug</th>
-                                        <th scope="col">Deskripsi</th>
+                                        <th scope="col" style="width: 10%">Judul</th>
                                         <th scope="col">Penulis</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
@@ -73,8 +71,6 @@
                                         <tr>
                                             <td scope="row">{{ $no++ }}</td>
                                             <td>{{ $education->title }}</td>
-                                            <td>{{ $education->slug }}</td>
-                                            <td>{{ $education->description }}</td>
                                             <td>{{ $education->author }}</td>
                                             <td>
                                                 <button data-id="{{ $education->id }}"
@@ -89,6 +85,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -99,7 +96,7 @@
     <!-- Modal Detail -->
     <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered " role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="detailModalLabel">Detail Data Edukasi</h5>
@@ -108,35 +105,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <img src="" id="detailModalImage" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="col-sm-8">
-                            <table>
-                                <tr>
-                                    <td><strong>Judul</strong></td>
-                                    <td>:</td>
-                                    <td id="detailModalTitle"></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Slug</strong></td>
-                                    <td>:</td>
-                                    <td id="detailModalSlug"></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Penulis</strong></td>
-                                    <td>:</td>
-                                    <td id="detailModalAuthor"></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Deskripsi</strong></td>
-                                    <td>:</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-italic" id="detailModalDescription"></td>
-                                </tr>
-                            </table>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <strong>
+                                    <h4 id="detailModalTitle"></h4>
+                                </strong>
+                                penulis : <i>
+                                    <p id="detailModalAuthor"></p>
+                                </i>
+                                <img src="" id="detailModalImage" alt="Image" width="400" height="200"
+                                    class="img-fluid">
+                                <p id="detailModalDescription"></p>
+                            </div>
                         </div>
                     </div>
                 </div>

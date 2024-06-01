@@ -45,7 +45,6 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Kode</th>
                                         <th scope="col">Penyakit</th>
-                                        <th scope="col">Solusi</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -58,7 +57,6 @@
                                             <td scope="row">{{ $no++ }}</td>
                                             <td>{{ $sick->code_sickness }}</td>
                                             <td>{{ $sick->name_sickness }}</td>
-                                            <td>{{ $sick->description }}</td>
                                             <td>
                                                 <button data-id="{{ $sick->id }}"
                                                     class="btn btn-sm btn-warning editButton">Edit</button>

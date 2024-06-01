@@ -11,9 +11,10 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
+                                        <th scope="col">User</th>
                                         <th scope="col">ID Diagnosa</th>
                                         <th scope="col">Hasil Diagnosa</th>
-                                        <th scope="col">Data Gejala</th>
+                                        <th scope="col">Diagnosa</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -24,9 +25,12 @@
                                     @foreach ($diagnosis as $item)
                                         <tr>
                                             <td scope="row">{{ $no++ }}</td>
+                                            <td>{{ $item->user->name }}</td>
                                             <td>{{ $item->diagnosis_id }}</td>
-                                            <td>{{ $item->data_diagnosis }}</td>
-                                            <td>{{ $item->condition }}</td>
+                                            <td>{{ $item->result_value }} atau {{ round($item->result_value * 100, 2) }} %
+                                            </td>
+                                            <td> {{ $item->result_code_sickness }}
+                                                {{ $item->result_name_sickness }} </td>
                                             <td>
                                                 <button data-id="{{ $item->id }}"
                                                     class="btn btn-sm btn-danger detailButton">Detail</button>
@@ -63,6 +67,10 @@
                         <input type="text" class="form-control" id="hasilDiagnosa" readonly>
                     </div>
                     <div class="form-group">
+                        <label for="dataDiagnosis">Data Diagnosis:</label>
+                        <textarea class="form-control" id="dataDiagnosis" rows="3" readonly></textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="dataGejala">Data Gejala:</label>
                         <textarea class="form-control" id="dataGejala" rows="3" readonly></textarea>
                     </div>
@@ -97,8 +105,26 @@
                     type: 'GET',
                     success: function(response) {
                         $('#diagnosisId').val(response.diagnosis_id);
-                        $('#hasilDiagnosa').val(response.data_diagnosis);
-                        $('#dataGejala').val(response.condition);
+                        $('#hasilDiagnosa').val(response.result_value);
+
+                        // Parse data diagnosis
+                        var dataDiagnosis = JSON.parse(response.data_diagnosis);
+                        var formattedDataDiagnosis = '';
+                        dataDiagnosis.forEach(function(item) {
+                            formattedDataDiagnosis += 'Value: ' + item.value +
+                                ', Code Sickness: ' + item.code_sickness + '\n';
+                        });
+                        $('#dataDiagnosis').val(formattedDataDiagnosis);
+
+                        // Parse data gejala
+                        var dataGejala = JSON.parse(response.condition);
+                        var formattedDataGejala = '';
+                        dataGejala.forEach(function(item) {
+                            formattedDataGejala += 'Gejala: ' + item[0] + ', Bobot: ' +
+                                item[1] + '\n';
+                        });
+                        $('#dataGejala').val(formattedDataGejala);
+
                         $('#detailModal').modal('show');
                     },
                     error: function(xhr) {
@@ -106,6 +132,7 @@
                     }
                 });
             });
+
 
         });
     </script>

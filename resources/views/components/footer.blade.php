@@ -1,4 +1,9 @@
- <p class="text-center text-muted pt-4">
-     Copyright © 2019<a href="https://www.bootstrapdash.com/" class="px-1">Bootstrapdash.</a>All
-     rights reserved.
- </p>
+<footer>
+    <p class="text-center text-muted pt-4">
+        Copyright © <span id="current-year"></span>
+        <a href="https://www.linkedin.com/in/perlindungan-duha-79466a154/" class="px-1">Sys Pakar.</a> All rights reserved.
+    </p>
+</footer>
+<script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>

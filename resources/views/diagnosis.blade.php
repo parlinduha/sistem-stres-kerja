@@ -46,7 +46,7 @@
                         @endforeach
                         <div class='gform_page_footer top_label'>
                             <button type="submit" class='gform_next_button button'>Submit</button>
-                            <a href="{{ route('assessment') }}" class='gform_cancel_button button'>Batal</a>
+                            <a href="{{ route('assessment') }}" class='gform_cancel_button button bg-danger'>Batal</a>
                         </div>
 
                     </ul>

@@ -20,7 +20,7 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
         <div>
             <a href="/">
-                <h1>Sys Pakar</h1>
+                <img src="{{ asset('First Media.svg') }}" width="100" height="20" alt="" srcset="" />
             </a>
         </div>
 

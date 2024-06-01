@@ -8,6 +8,7 @@ use App\Models\Diagnosis;
 use App\Models\Sickness;
 use App\Models\ValueCf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DiagnosaController extends Controller
 {
@@ -22,79 +23,65 @@ class DiagnosaController extends Controller
     {
         $filterArray = $request->post('condition');
 
-
-        $condition = array_filter($filterArray, function($value){
+        $condition = array_filter($filterArray, function ($value) {
             return $value !== null;
         });
-        // dd($condition);
 
         $codeIndication = [];
         $bobotPilihan = [];
 
         foreach ($condition as $key => $value) {
             if ($value != "#") {
-                echo "key : $key, value : $value";
-                echo "<br/>";
                 array_push($codeIndication, $key);
                 array_push($bobotPilihan, array($key, $value));
             }
         }
 
         $sickness = Sickness::all();
-        $cf=0;
         $arrIndication = [];
 
-        for ($i = 0; $i < count($sickness); $i++) {
+        foreach ($sickness as $sick) {
             $cfArr = [
                 "cf" => [],
                 "code_sickness" => []
             ];
-            $res = 0;
-            $ruleSick = ValueCf::whereIn("code_indication", $codeIndication)->where("code_sickness", $sickness[$i]->code_sickness)->get();
-            // dd($ruleSick);
+            $ruleSick = ValueCf::whereIn("code_indication", $codeIndication)
+                ->where("code_sickness", $sick->code_sickness)
+                ->get();
+
             if (count($ruleSick) > 0) {
-                foreach ($ruleSick as $ruleKey) {
-                    $cf = $ruleKey->mb - $ruleKey->md;
+                foreach ($ruleSick as $rule) {
+                    $cf = $rule->mb - $rule->md;
                     array_push($cfArr["cf"], $cf);
-                    array_push($cfArr["code_sickness"], $ruleKey->code_sickness);
+                    array_push($cfArr["code_sickness"], $rule->code_sickness);
                 }
                 $res = $this->getGabunganCf($cfArr);
-                // dd($res);
-                // print "<br> res : $res <br>";
                 array_push($arrIndication, $res);
-            } else {
-                continue;
             }
         }
+
         $diagnosis_id = uniqid();
         $ins =  Diagnosis::create([
             'diagnosis_id' => strval($diagnosis_id),
             'data_diagnosis' => json_encode($arrIndication),
-            'condition' => json_encode($bobotPilihan)
+            'condition' => json_encode($bobotPilihan),
+            'user_id' => Auth::user()->id
         ]);
 
-        // dd($ins);
         return redirect()->route('diagnosis.result', ["diagnosis_id" => $diagnosis_id]);
     }
+
     public function getGabunganCf($cfArr)
     {
-        if (!$cfArr["cf"]) {
+        if (empty($cfArr["cf"])) {
             return 0;
-        }
-        if (count($cfArr["cf"]) == 1) {
-            return [
-                "value" => strval($cfArr["cf"][0]),
-                "code_sickness" => $cfArr["code_sickness"][0]
-            ];
         }
 
         $cfoldGabungan = $cfArr["cf"][0];
 
-
-        for ($i = 0; $i < count($cfArr["cf"]) - 1; $i++) {
-            $cfoldGabungan = $cfoldGabungan + ($cfArr["cf"][$i + 1] * (1 - $cfoldGabungan));
+        for ($i = 1; $i < count($cfArr["cf"]); $i++) {
+            $cfoldGabungan = $cfoldGabungan + ($cfArr["cf"][$i] * (1 - $cfoldGabungan));
         }
-
 
         return [
             "value" => "$cfoldGabungan",
@@ -105,59 +92,55 @@ class DiagnosaController extends Controller
     public function diagnosisResult($diagnosis_id)
     {
         $diagnosis = Diagnosis::where('diagnosis_id', $diagnosis_id)->first();
-        // dd($diagnosis);
         $indications = json_decode($diagnosis->condition, true);
         $data_diagnosis = json_decode($diagnosis->data_diagnosis, true);
-        $int = 0.0;
         $diagnosis_selected = [];
-        // dd($data_diagnosis);
+
+        $int = 0.0;
         foreach ($data_diagnosis as $val) {
-            // print_r(floatval($val["code_sickness"]));
             if (floatval($val["value"]) > $int) {
                 $diagnosis_selected["value"] = floatval($val["value"]);
                 $diagnosis_selected["code_sickness"] = Sickness::where("code_sickness", $val["code_sickness"])->first();
                 $int = floatval($val["value"]);
             }
         }
-        // dd($data_diagnosis);
-        // dd($diagnosis_selected);
-        // dd($indications);
 
         $kodeGejala = [];
         foreach ($indications as $key) {
             array_push($kodeGejala, $key[0]);
         }
-        // dd($codeIndication);
         $codeSickness = $diagnosis_selected["code_sickness"]->code_sickness;
-        $expert = ValueCf::whereIn("code_indication", $kodeGejala)->where("code_sickness", $codeSickness)->get();
-        // dd($codeSickness);
+        $expert = ValueCf::whereIn("code_indication", $kodeGejala)
+            ->where("code_sickness", $codeSickness)
+            ->get();
+
         $indication_by_user = [];
         foreach ($expert as $key) {
-            $i = 0;
             foreach ($indications as $gKey) {
                 if ($gKey[0] == $key->code_indication) {
                     array_push($indication_by_user, $gKey);
                 }
             }
         }
-        // dd($gejala_by_user);
 
         $valueExpert = [];
         foreach ($expert as $key) {
             array_push($valueExpert, ($key->mb - $key->md));
         }
+
         $valueUser = [];
         foreach ($indication_by_user as $key) {
             array_push($valueUser, $key[1]);
         }
-        // dd($nilaiPakar);
-        // dd($nilaiUser);
 
         $cfCombination = $this->getCfCombination($valueExpert, $valueUser);
-        // dd($cfCombination);
         $result = $this->getGabunganCf($cfCombination);
-        // dd($result);
 
+        // dd($result);
+        $diagnosis->result_value = $result['value'];
+        $diagnosis->result_code_sickness = $diagnosis_selected['code_sickness']->code_sickness;
+        $diagnosis->result_name_sickness = $diagnosis_selected['code_sickness']->name_sickness;
+        $diagnosis->save();
 
         return view('result_diagnosis', [
             "diagnosa" => $diagnosis,
@@ -170,14 +153,17 @@ class DiagnosaController extends Controller
             "result" => $result
         ]);
     }
+
     public function getCfCombination($expert, $user)
     {
         $cfComb = [];
+
         if (count($expert) == count($user)) {
             for ($i = 0; $i < count($expert); $i++) {
                 $res = $expert[$i] * $user[$i];
-                array_push($cfComb, floatval($res));
+                array_push($cfComb, $res);
             }
+
             return [
                 "cf" => $cfComb,
                 "code_sickness" => ["0"]

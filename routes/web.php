@@ -11,12 +11,15 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DiagnosaController;
+use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 Route::get('/about', [WelcomeController::class, 'about'])->name('about');
 Route::get('/blog', [WelcomeController::class, 'blog'])->name('blog');
+Route::get('/blog/{slug}', [WelcomeController::class, 'blog_detail'])->name('blog-detail');
 Route::get('/assessment', [WelcomeController::class, 'assessment'])->name('assessment');
+Route::get('/weather', [WeatherController::class, 'index'])->name('weather');
 
 Route::get('/diagnosis', [DiagnosaController::class, 'index'])->name('diagnosis.index');
 Route::post('/diagnosis', [DiagnosaController::class, 'store'])->name('diagnosis.store');
@@ -67,9 +70,7 @@ Route::post('/admin/profile/image', [AdminProfileController::class, 'updateImage
 Route::post('/admin/profile/update/password', [AdminProfileController::class, 'updatePassword'])->name('admin.profile.update.password');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/history', [WelcomeController::class, 'history'])->middleware(['auth', 'verified'])->name('history');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

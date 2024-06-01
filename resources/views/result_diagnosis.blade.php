@@ -89,6 +89,25 @@
                     </tbody>
                 </table>
             </div>
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="card my-4">
+                        <div class="card-header">
+                            Hasil
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ $diagnosa_dipilih['code_sickness']->code_sickness }} |
+                                {{ $diagnosa_dipilih['code_sickness']->name_sickness }}
+                            </h5>
+                            <p class="card-text">Jadi dapat disimpulkan bahwa pasien mengalami tingkat depresi yaitu Depresi
+                                Ringan dengan tingkat kepastian yaitu <span
+                                    class="fw-semibold fs-4">{{ round($result['value'] * 100, 2) }}</span> %</p>
+                            {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

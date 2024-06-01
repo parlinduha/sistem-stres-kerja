@@ -16,6 +16,11 @@ return new class extends Migration
             $table->char('diagnosis_id');
             $table->json('data_diagnosis');
             $table->json('condition');
+            $table->string('result_value')->nullable();
+            $table->string('result_code_sickness')->nullable();
+            $table->string('result_name_sickness')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

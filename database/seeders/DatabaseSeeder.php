@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ConditionSeeder::class,
             IndicationSeeder::class,
             SicknessSeeder::class,
+            EducationSeeder::class
             // ValueCfSeeder::class,
         ]);
     }
