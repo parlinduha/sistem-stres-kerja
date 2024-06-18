@@ -11,9 +11,10 @@
                 }
             @endphp
             <img src="{{ $imagePath }}" width="600" alt="">
-            <p>
+            {{-- <p>
                 {{ $education->description }}
-            </p>
+            </p> --}}
+                    <p id="detailModalDescription"><?php echo html_entity_decode($education->description); ?></p>
             <p>
                 <strong>Author:</strong> {{ $education->author }}
             </p>

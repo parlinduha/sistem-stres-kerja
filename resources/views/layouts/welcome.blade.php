@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/vendors/mdi/css/materialdesignicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/vendors/aos/css/aos.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/style.min.css') }}" />
-
+    @yield('styles')
 </head>
 
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">

@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="{{ asset('backend/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('backend/images/favicon.png') }}" />
-
+    @yield('style')
 </head>
 
 <body>
-    
+
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         @include('admin.layouts.partials.navbar')
@@ -55,6 +55,7 @@
 
     <!-- plugins:js -->
     <script src="{{ asset('backend/vendors/js/vendor.bundle.base.js') }}"></script>
+
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <script src="{{ asset('backend/vendors/chart.js/Chart.min.js') }}"></script>

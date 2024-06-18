@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,27 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function fillTable()
+    {
+        $users = [
+            [
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('1234567890'),
+                'role' => 'admin',
+                'gender' => 'male',
+                'address' => 'Jl. Raya Kota'
+            ],[
+                'name' => 'User',
+                'email' => 'user@gmail.com',
+                'password' => Hash::make('1234567890'),
+                'role' => 'staff',
+                'gender' => 'male',
+                'address' => 'Jl. Raya Kota'
+            ]
+        ];
+        return $users;
     }
 }

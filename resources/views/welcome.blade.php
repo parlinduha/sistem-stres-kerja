@@ -20,7 +20,6 @@
                         Aplikasi ini menggunakan metode tanya jawab untuk mengidentifikasi tingkat stres kerja Anda.
                     </p>
                     <a href="{{ route('assessment') }}">
-                        <p class="readmore-link">Selengkapnya</p>
                     </a>
                 </div>
             </div>
@@ -32,7 +31,6 @@
                         Berdasarkan hasil identifikasi, aplikasi memberikan rekomendasi penanganan stres yang sesuai.
                     </p>
                     <a href="{{ route('assessment') }}">
-                        <p class="readmore-link">Selengkapnya</p>
                     </a>
                 </div>
             </div>
@@ -45,58 +43,14 @@
                         penanganan.
                     </p>
                     <a href="{{ route('assessment') }}">
-                        <p class="readmore-link">Selengkapnya</p>
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="digital-marketing-service" id="digital-marketing-section">
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
-                <h3 class="m-0">
-                    Kami Menyediakan Berbagai Layanan<br />Untuk Mengelola Stres Kerja!
-                </h3>
-                <div class="col-lg-7 col-xl-6 p-0">
-                    <p class="py-4 m-0 text-muted">
-                        Aplikasi ini menawarkan berbagai fitur untuk membantu Anda mengidentifikasi, menangani, dan memantau
-                        tingkat stres kerja.
-                    </p>
-                    <p class="font-weight-medium text-muted">
-                        Dengan fitur-fitur pintar, aplikasi ini menjadi alat yang kuat untuk mengelola stres kerja secara
-                        efektif.
-                    </p>
-                </div>
-            </div>
-            <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
-                <img src="images/Group1.png" alt="" class="img-fluid" />
-            </div>
-        </div>
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-7 text-center flex-item grid-margin" data-aos="fade-right">
-                <img src="{{ asset('frontend/images/Group2.png') }}" alt="" class="img-fluid" />
-            </div>
-            <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-left">
-                <h3 class="m-0">
-                    Agensi Digital Terdepan<br />Untuk Solusi Bisnis Anda.
-                </h3>
-                <div class="col-lg-9 col-xl-8 p-0">
-                    <p class="py-4 m-0 text-muted">
-                        Dilengkapi dengan fitur-fitur mengesankan dan dioptimalkan dengan baik, aplikasi ini dirancang untuk
-                        memberikan kinerja terbaik dalam segala situasi.
-                    </p>
-                    <p class="pb-2 font-weight-medium text-muted">
-                        Fitur-fitur pintarnya membuatnya menjadi alat yang berdiri sendiri dalam membangun situs web.
-                    </p>
-                </div>
-                <a href="{{ route('assessment') }}" class="btn btn-info">Selengkapnya</a>
             </div>
         </div>
     </section>
     <section class="case-studies" id="case-studies-section">
         <div class="row grid-margin">
             <div class="col-12 text-center pb-5">
-                <h2>Studi Kasus Kami</h2>
                 <h6 class="section-subtitle text-muted">
                     Beberapa contoh penerapan aplikasi sistem pakar dalam mengelola stres kerja.
                 </h6>

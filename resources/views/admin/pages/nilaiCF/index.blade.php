@@ -52,47 +52,80 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Basis Pengetahuan</h4>
-                        <div class="table-responsive">
-                            <table id="dataTable" class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Kode Penyakit</th>
-                                        <th scope="col">Kode Gejala</th>
-                                        <th scope="col">Nilai MB</th>
-                                        <th scope="col">Nilai MD</th>
-                                        <th scope="col">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $no = 1;
-                                    @endphp
-                                    @foreach ($nilaiCf as $item)
-                                        <tr>
-                                            <td scope="row">{{ $no++ }}</td>
-                                            <td>{{ $item->code_indication }}</td>
-                                            <td>{{ $item->code_sickness }}</td>
-                                            <td>{{ $item->mb }}</td>
-                                            <td>{{ $item->md }}</td>
-                                            <td>
-                                                <button data-id="{{ $item->id }}"
-                                                    class="btn btn-sm btn-warning editButton">Edit</button>
-                                                <button data-id="{{ $item->id }}"
-                                                    class="btn btn-sm btn-danger deleteButton">Delete</button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                       <div class="table-wrapper">
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Kode Gejala</th>
+                <th scope="col">Kode Penyakit</th>
+                <th scope="col">Nilai MB</th>
+                <th scope="col">Nilai MD</th>
+                <th scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $no = 1;
+            @endphp
+            @foreach ($nilaiCf as $item)
+                <tr>
+                    <td scope="row">{{ $no++ }}</td>
+                    <td>{{ $item->code_indication }}</td>
+                    <td>{{ $item->code_sickness }}</td>
+                    <td>{{ $item->mb }}</td>
+                    <td>{{ $item->md }}</td>
+                    <td>
+                        <button data-id="{{ $item->id }}"
+                            class="btn btn-sm btn-warning editButton">Edit</button>
+                        <button data-id="{{ $item->id }}"
+                            class="btn btn-sm btn-danger deleteButton">Delete</button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@section('style')
+    <style>
+        .table-wrapper {
+    overflow-y: auto;
+    max-height: 400px; /* Atur sesuai kebutuhan Anda */
+    display: block;
+    position: relative;
+}
 
+.table-wrapper .table {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.table-wrapper thead th {
+    position: sticky;
+    top: 0;
+    background: #f8f9fa; /* Atur warna latar belakang sesuai kebutuhan Anda */
+    z-index: 10;
+}
+
+.table-wrapper th, .table-wrapper td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table-wrapper tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Atur warna latar belakang baris genap sesuai kebutuhan Anda */
+}
+
+    </style>
+@endsection
 @section('scripts')
     <script>
         $(document).ready(function() {
@@ -100,7 +133,7 @@
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
             $('#dataTable').DataTable({
-                "pageLength": 10
+                "pageLength": 5
             });
             // Setel header X-CSRF-Token untuk setiap permintaan AJAX
             $.ajaxSetup({
@@ -114,6 +147,7 @@
                     url: '/admin/certainty/' + id,
                     type: 'GET',
                     success: function(response) {
+                        console.log('object found', response);
                         $('#code_indication').val(response.code_indication);
                         $('#code_sickness').val(response.code_sickness);
                         $('#mb').val(response.mb);

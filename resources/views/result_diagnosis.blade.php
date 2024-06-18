@@ -24,7 +24,7 @@
         <div class="col-lg-12 mx-auto">
             <div class="d-flex ">
                 {{-- Pakar --}}
-                <table class="table table-hover mt-lg-5 border border-primary p-3 mx-3">
+                {{-- <table class="table table-hover mt-lg-5 border border-primary p-3 mx-3">
                     <thead>
                         <tr>
                             <th scope="col">Pakar</th>
@@ -46,10 +46,10 @@
                             </tr>
                         @endforeach
                     </tbody>
-                </table>
+                </table> --}}
 
                 {{-- User --}}
-                <table class="table table-hover mt-lg-5 border border-danger p-3 mx-3">
+                {{-- <table class="table table-hover mt-lg-5 border border-danger p-3 mx-3">
                     <thead>
                         <tr>
                             <th scope="col">User</th>
@@ -67,11 +67,11 @@
                             </tr>
                         @endforeach
                     </tbody>
-                </table>
+                </table> --}}
 
                 {{-- Tabel Cf Gabungan --}}
                 {{-- CF Gabungan --}}
-                <table class="table table-hover mt-lg-5 border border-info p-3 mx-3">
+                {{-- <table class="table table-hover mt-lg-5 border border-info p-3 mx-3">
                     <thead>
                         <tr>
                             <th scope="col">Hasil</th>
@@ -87,7 +87,7 @@
                             </tr>
                         @endforeach
                     </tbody>
-                </table>
+                </table> --}}
             </div>
             <div class="row">
                 <div class="col-md-10 mx-auto">
@@ -100,10 +100,21 @@
                                 {{ $diagnosa_dipilih['code_sickness']->code_sickness }} |
                                 {{ $diagnosa_dipilih['code_sickness']->name_sickness }}
                             </h5>
-                            <p class="card-text">Jadi dapat disimpulkan bahwa pasien mengalami tingkat depresi yaitu Depresi
-                                Ringan dengan tingkat kepastian yaitu <span
+                            <p class="card-text">Dengan demikian dapat dikatakan bahwa perhitungan certainty factor identifikasi tingkat stres bagi karyawan memiliki persentase tingkat keyakinan  yaitu <span
                                     class="fw-semibold fs-4">{{ round($result['value'] * 100, 2) }}</span> %</p>
                             {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                            <h6>Solusi</h6>
+                            @php
+                                $value = $diagnosa_dipilih['code_sickness']->code_sickness;
+                                // dd($value);
+                                $solusi = DB::table('sicknesses')->where('code_sickness', $value)->first();
+                                // dd($solusi);
+                            @endphp
+                            @if ($solusi)
+                                <p>{{ $solusi->description }}</p>
+                            @else
+                                <p>Data penyebab tidak ditemukan.</p>
+                            @endif
                         </div>
                     </div>
                 </div>

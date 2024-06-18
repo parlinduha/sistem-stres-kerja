@@ -38,10 +38,8 @@
                             </div>
                             <div class="form-group row">
                                 <label for="description" class="col-sm-3 col-form-label">Deskripsi</label>
-                                <div class="col-sm-9">
-                                    <textarea type="text" class="form-control form-control-sm" name="description" id="description"
-                                        placeholder="Deskripsi"></textarea>
-                                </div>
+                                <textarea type="text" class="form-control form-control-sm" name="description" id="description"
+                                    placeholder="Deskripsi"></textarea>
                             </div>
                             <button type="submit" class="btn btn-sm btn-primary mr-2" id="submitButton">Submit</button>
                             <button class="btn btn-sm btn-danger" id="cancelButton">Cancel</button>
@@ -116,7 +114,8 @@
                                 </i>
                                 <img src="" id="detailModalImage" alt="Image" width="400" height="200"
                                     class="img-fluid">
-                                <p id="detailModalDescription"></p>
+                                <p id="detailModalDescription"><?php echo html_entity_decode($education->description); ?></p>
+
                             </div>
                         </div>
                     </div>
@@ -130,6 +129,74 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace('description', {
+            height: 300,
+            toolbar: [{
+                    name: 'document',
+                    items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']
+                },
+                {
+                    name: 'clipboard',
+                    items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
+                },
+                {
+                    name: 'editing',
+                    items: ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt']
+                },
+                {
+                    name: 'forms',
+                    items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button',
+                        'ImageButton', 'HiddenField'
+                    ]
+                },
+                '/',
+                {
+                    name: 'basicstyles',
+                    items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-',
+                        'RemoveFormat'
+                    ]
+                },
+                {
+                    name: 'paragraph',
+                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote',
+                        'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+                        '-', 'BidiLtr', 'BidiRtl'
+                    ]
+                },
+                {
+                    name: 'links',
+                    items: ['Link', 'Unlink', 'Anchor']
+                },
+                {
+                    name: 'insert',
+                    items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                        'Iframe'
+                    ]
+                },
+                '/',
+                {
+                    name: 'styles',
+                    items: ['Styles', 'Format', 'Font', 'FontSize']
+                },
+                {
+                    name: 'colors',
+                    items: ['TextColor', 'BGColor']
+                },
+                {
+                    name: 'tools',
+                    items: ['Maximize', 'ShowBlocks']
+                },
+                {
+                    name: 'about',
+                    items: ['About']
+                }
+            ]
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
             // Ambil nilai token CSRF
@@ -175,7 +242,8 @@
                     success: function(response) {
                         $('#title').val(response.title);
                         $('#slug').val(response.slug);
-                        $('#description').val(response.description);
+                        CKEDITOR.instances.description.setData(response.description);
+                        // $('#description').val(response.description);
                         $('#author').val(response.author);
                         $('#formTitle').text('Update Data');
                         $('#submitButton').text('Update');

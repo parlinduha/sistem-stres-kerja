@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DiagnosaController;
+use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,10 @@ Route::get('/blog', [WelcomeController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [WelcomeController::class, 'blog_detail'])->name('blog-detail');
 Route::get('/assessment', [WelcomeController::class, 'assessment'])->name('assessment');
 Route::get('/weather', [WeatherController::class, 'index'])->name('weather');
+
+// new routines
+Route::get('/expert', [ExpertController::class, 'index'])->name('expert.index');
+Route::post('/expert', [ExpertController::class, 'store'])->name('expert.store');
 
 Route::get('/diagnosis', [DiagnosaController::class, 'index'])->name('diagnosis.index');
 Route::post('/diagnosis', [DiagnosaController::class, 'store'])->name('diagnosis.store');

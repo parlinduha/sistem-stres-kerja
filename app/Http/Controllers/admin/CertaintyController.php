@@ -32,9 +32,10 @@ class CertaintyController extends Controller
         return response()->json(['message' => 'Data penyakit berhasil disimpan.', 'data' => $nilaiCf], 201);
     }
 
-    public function getSicknessById($id)
+    public function getCertaintyById($id)
     {
         $nilaiCf = ValueCf::findOrFail($id);
+
         return response()->json($nilaiCf);
     }
 

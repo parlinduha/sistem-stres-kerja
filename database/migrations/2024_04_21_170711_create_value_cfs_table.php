@@ -17,6 +17,8 @@ return new class extends Migration
             $table->char('code_indication');
             $table->float('mb')->nullable();
             $table->float('md')->nullable();
+
+            
             $table->timestamps();
         });
     }

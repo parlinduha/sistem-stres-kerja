@@ -9,6 +9,8 @@ class ValueCf extends Model
 {
     use HasFactory;
 
+    protected $table = 'value_cfs';
+    protected $guard = ["id"];
     protected $fillable = [
         'code_sickness',
         'code_indication',
@@ -24,4 +26,6 @@ class ValueCf extends Model
     {
         return $this->hasMany(Indication::class, 'code_indication' /* tbl gejala */, 'code_indication');
     }
+
+
 }

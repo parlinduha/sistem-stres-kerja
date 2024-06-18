@@ -15,28 +15,42 @@ class SicknessSeeder extends Seeder
     {
         $sicknesses = [
             [
-                "code_sickness" => "P001",
-                "name_sickness" => "Gangguan Mood",
-                "description" => 'Ganggguan mood yang terjadi pada seseorang ini umumnya terjadi karena banyaknya tekanan yang menimpa dirinya dan cenderung terlarut dalam tekanan dapat meningkatkan resiko berkembangnya gangguan mood yang kemudian dapat berubah menjadi depresi terutama depresi mayor. Hal ini terbukti pada suatu penelitian yang menemukan bahwa dalam sekitar empat dari lima kasus, depresi mayor diawali oleh peristiwa kehidupan yang penuh tekanan.'
-
+                "code_sickness" => "D01",
+                "name_sickness" => "Tidak Stres",
+                "description" => "Tetap bersyukur dan teguh dalam menjaga apa yang sudah dimiliki"
             ],
             [
-                "code_sickness" => "P002",
-                "name_sickness" => "Depresi Ringan",
-                "description" => 'Depresi ringan ini di identikkan dengan depresi minor yang merupakan perasaan melankolis yang berlangsung sebentar dan disebabkan oleh sebuah kejadian yang tragis atau mengandung ancaman, atau kehilangan sesuatu yang penting dalam kehidupan si penderita (Meier, 2000: 20-21). Orang dengan depresi ringan ini setidaknya memiliki 2 dari gejala lainnya dan 2-3 dari gejala utama. (Maslim, 2003, 64).'
-
+                "code_sickness" => "D02",
+                "name_sickness" => "Stres Rendah",
+                "description" => "1. Coba luangkan sedikit waktu istirahat di kantor, entah itu untuk berbincang dengan rekan kerja dan berbagi ide, atau keluar sejenak dari ruangan dan mungkin pergi ke kantin untuk sesaat.
+                                  2. Silakan lakukan sesi meditasi singkat untuk meredakan ketegangan dalam diri.
+                                  3. Mencuci wajah sebentar untuk menyegarkan karena air yang menyentuh kulit dapat memberikan sensasi segar yang berhubungan dengan merasa rileks.
+                                  4. Melakukan aktivitas fisik ringan tanpa harus berdiri atau berjalan.
+                                  5. Coba luangkan waktu untuk melakukan hobi, seperti mendengarkan musik sebentar atau menggambar, sebelum kembali fokus pada pekerjaan.
+                                  6. Temukan asal-usul tekanan yang dirasakan, kemudian bicarakan dengan seseorang terdekat atau refleksikan dalam diri sendiri.
+                                  7. Buatlah urutan tugas yang harus diselesaikan satu per satu berdasarkan prioritasnya.
+                                  8. Memberikan penghargaan pada diri sendiri adalah tentang mengakui dan menghargai pencapaian, kualitas, atau upaya yang telah kita lakukan.
+                                  9. Konsumsilah makanan yang sehat dan bergizi, hindari mengonsumsi makanan cepat saji."
             ],
             [
-                "code_sickness" => "P003",
-                "name_sickness" => "Depresi Sedang",
-                "description" => 'Depresi sedang ini di alami oleh penderita selama kurang 2 minggu, dan orang dengan depresi sedang ini mengalami kesulitan nyata untuk meneruskan kegiatan social, pekerjaan dan urusan rumah tangga. Orang dengan depresi sedang ini setidaknya memiliki 2-3 dari gejala utama dan 3-4 dari gejala lainnya (Maslim,  2003: 64).'
-
+                "code_sickness" => "D03",
+                "name_sickness" => "Stres Sedang",
+                "description" => "1. Saat mencoba mengingat kembali, identifikasi masalah utama yang terjadi sebelumnya dan buatlah daftar prioritas berdasarkan hal tersebut.
+                                  2. Susun agenda harian dan rutinitas.
+                                  3. Meditasi yang digunakan untuk menciptakan kedamaian dan ketenangan dalam pikiran dan tubuh seseorang.
+                                  4. Buatlah rencana perjalanan untuk memanjakan diri sebagai hadiah.
+                                  5. Lakukanlah diskusi dan pertukaran ide dengan teman serta pakar untuk mendapatkan pemahaman yang lebih baik.
+                                  6. Berpikir positif ialah keyakinan bahwa di setiap masalah, pasti terdapat solusinya."
             ],
             [
-                "code_sickness" => "P004",
-                "name_sickness" => "Depresi Berat",
-                "description" => 'Depresi mayor merupakan salah satu gangguan yang prevalensinya paling tinggi di antara berbagai gangguan (Davidson, 2006: 374). Depresi mayor adalah kemurungan yang dalam dan menyebar luas. Perasaan murung ini mampu menyedot semangat dan energy serta menyelubungi kehidupan si penderita seperti asap yang tebak dan menyesakkan dada. Depresi mayor ini dapat berlangsung cukup lama mulai dari empat belas hari sampai beberapa tahun. Hal ini menyebabkan penderita akan sangat sulit utnuk berfungsi dengan baik di lingkungannya. Orang dengan depresi mayor ini juga terkadang disertai dengan keinginan untuk bunuh diri atau bahkan keinginan untuk mati. Orang yang sangat tertekan, mereka akan mengalami dampak hal-hal yang mengganggu kejiwaan mereka seperti gila, paranoia atau halusinasi pendengaran (Meier, 2000: 25-26).'
-
+                "code_sickness" => "D04",
+                "name_sickness" => "Stres Tinggi",
+                "description" => "1. Mengambil Istirahat.
+                                  2. Tetapkan prioritas dan pilih tugas yang akan diselesaikan terlebih dahulu.
+                                  3. Pilihlah untuk mengonsumsi makanan yang sehat dan kaya gizi, dan hindari makanan cepat saji.
+                                  4. Lakukanlah praktik meditasi, berolahraga, atau yoga.
+                                  5. Minta pertolongan dari seorang pakar.
+                                  6. Berpikir positif dan memiliki tekad bahwa setiap masalah pasti bisa diatasi tidak hanya mempermasalahkan situasi tersebut, tetapi juga mencari solusi."
             ],
         ];
 

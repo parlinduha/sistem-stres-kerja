@@ -3,7 +3,7 @@
     <section class="case-studies" id="case-studies-section">
         <div class="row grid-margin">
             <div class="col-12 text-center pb-5">
-                <h2>Studi Kasus Kami</h2>
+                <h2>Edukasi</h2>
                 <h6 class="section-subtitle text-muted">
                     Beberapa contoh penerapan aplikasi sistem pakar dalam mengelola stres kerja.
                 </h6>
@@ -14,8 +14,15 @@
                         <div class="card-body p-0">
                             <div class="bg-primary text-center card-contents">
                                 <div class="card-image">
-                                    <img src="{{ asset('frontend/images/Group95.svg') }}" class="case-studies-card-img"
-                                        alt="" />
+                                    {{-- <img src="{{ asset('frontend/images/Group95.svg') }}" class="case-studies-card-img"
+                                        alt="" /> --}}
+                                    @php
+                                        $imagePath = asset($education->image);
+                                        if (!file_exists(public_path($education->image))) {
+                                            $imagePath = asset('storage/' . $education->image);
+                                        }
+                                    @endphp
+                                    <img src="{{ $imagePath }}" class="case-studies-card-img" alt="">
                                 </div>
                                 <div class="card-desc-box d-flex align-items-center justify-content-around">
                                     <div>
@@ -29,7 +36,6 @@
                                 </div>
                             </div>
                             <div class="card-details text-center pt-4">
-                                <h6 class="m-0 pb-1">Studi Kasus 1</h6>
                                 <p>{{ $education->slug }}</p>
                             </div>
                         </div>
