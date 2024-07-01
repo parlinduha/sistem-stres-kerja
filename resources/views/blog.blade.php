@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="card-details text-center pt-4">
-                                <p>{{ $education->slug }}</p>
+                                <p>{{ $education->title }}</p>
                             </div>
                         </div>
                     </div>

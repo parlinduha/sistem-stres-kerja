@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <div class="card-details text-center pt-4">
-                                <p>{{ Str::limit($education->title, 50) }}</p>
+                                {{-- <p>{{ Str::limit($education->title, 50) }}</p> --}}
                                 {{-- <h6 class="m-0 pb-1">{{ $education->author }}</h6> --}}
                             </div>
                         </div>

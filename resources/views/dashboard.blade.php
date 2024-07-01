@@ -1,25 +1,38 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'pdfHtml5'
+            ]
+        });
+    });
+</script>
 <style>
-    /* CSS untuk styling tabel */
-    .table {
-        width: 100%;
-        border-collapse: collapse;
+    .dt-button.buttons-pdf {
+        background-color: #3c74cf !important;
+        color: white !important;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        border-radius: 50px;
     }
 
-    .table th,
-    .table td {
-        border: 1px solid #dee2e6;
-        padding: 8px;
-    }
-
-    .table th {
-        background-color: #6c757d;
-        color: #fff;
-    }
-
-    .table-striped tbody tr:nth-of-type(odd) {
-        background-color: rgba(0, 0, 0, 0.05);
+    /* Add hover effect */
+    .dt-button.buttons-pdf:hover {
+        background-color: #3664b2 !important;
     }
 </style>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -29,16 +42,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-
             <div class="bg-white overflow-hidden mt-2 shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @if ($diagnoses->isNotEmpty())
-                        <table class="table table-bordered table-striped">
+                        <table id="myTable" class="table table-bordered table-striped">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">No</th>
@@ -56,48 +63,6 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $diagnosis->diagnosis_id }}</td>
-                                        {{-- <td>
-                                            @php
-                                                $dataDiagnosis = json_decode($diagnosis->data_diagnosis, true);
-                                            @endphp
-                                            <table class="table table-bordered mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Value</th>
-                                                        <th>Code Sickness</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($dataDiagnosis as $data)
-                                                        <tr>
-                                                            <td>{{ $data['value'] }}</td>
-                                                            <td>{{ $data['code_sickness'] }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            @php
-                                                $conditions = json_decode($diagnosis->condition, true);
-                                            @endphp
-                                            <table class="table table-bordered mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Condition</th>
-                                                        <th>Value</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($conditions as $condition)
-                                                        <tr>
-                                                            <td>{{ $condition[0] }}</td>
-                                                            <td>{{ $condition[1] }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </td> --}}
                                         <td>{{ $diagnosis->result_value }} atau
                                             {{ round($diagnosis->result_value * 100, 2) }} %</td>
                                         <td> {{ $diagnosis->result_code_sickness }}
