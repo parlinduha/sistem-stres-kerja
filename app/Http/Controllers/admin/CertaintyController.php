@@ -14,6 +14,7 @@ class CertaintyController extends Controller
     {
         $sickness = Sickness::all();
         $indication = Indication::all();
+        // $codeIndication = 'G041';
         $nilaiCf = ValueCf::orderBy('id', 'asc')->get();
         return view('admin.pages.nilaiCF.index', compact('nilaiCf', 'indication', 'sickness'));
     }

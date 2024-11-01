@@ -30,7 +30,7 @@ class ExpertController extends Controller
 
         foreach ($sicknesses as $sickness) {
             $certaintyFactor = $this->calculateCertaintyFactor($sickness, $selectedIndications);
-
+            // dd($certaintyFactor );
             if ($certaintyFactor > $maxCertainty) {
                 $maxCertainty = $certaintyFactor;
                 $diagnosedSickness = $sickness;

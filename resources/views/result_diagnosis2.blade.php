@@ -39,7 +39,7 @@
             </table>
             <div class="alert alert-success">
                 <h4 class="alert-heading">{{ $diagnosedSickness->name_sickness }}</h4>
-                <p class="mb-0">Tingkat Keyakinan: {{ number_format($maxCertainty * 100, 2) }}%</p>
+                <p class="mb-0">Tingkat Keyakinan: {{ number_format($maxCertainty * 100, 4) }}%</p>
                 <hr>
                 <p><b>Solusi : </b></p>
                 <p>{{ $diagnosedSickness->description }}</p>
@@ -51,7 +51,7 @@
             </div>
         @endif
 
-        <a href="{{ route('expert.index') }}" class="btn btn-primary mt-3 ">Kembali</a>
+        <a href="{{ route('expert.index') }}" class="mt-3 btn btn-primary ">Kembali</a>
 
     </div>
 @endsection

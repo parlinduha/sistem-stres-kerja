@@ -42,7 +42,7 @@
                                         placeholder="Masukan Nilai MD">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-primary mr-2" id="submitButton">Submit</button>
+                            <button type="submit" class="mr-2 btn btn-sm btn-primary" id="submitButton">Submit</button>
                             <button class="btn btn-sm btn-danger" id="cancelButton">Cancel</button>
                         </form>
                     </div>

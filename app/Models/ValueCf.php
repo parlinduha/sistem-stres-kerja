@@ -20,11 +20,12 @@ class ValueCf extends Model
 
     public function sickness()
     {
-        return $this->hasMany(Sickness::class, 'code_sickness', 'code_sickness');
+        return $this->belongsTo(Sickness::class, 'code_sickness', 'code_sickness');
     }
+
     public function indication()
     {
-        return $this->hasMany(Indication::class, 'code_indication' /* tbl gejala */, 'code_indication');
+        return $this->belongsTo(Indication::class, 'code_indication', 'code_indication');
     }
 
 
